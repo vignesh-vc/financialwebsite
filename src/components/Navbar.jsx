@@ -6,6 +6,7 @@ function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
+    let timeoutId = useRef(null);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -13,6 +14,27 @@ function Navbar() {
 
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
+    };
+
+    const handleMouseEnter = () => {
+        if (window.innerWidth >= 768) {
+            clearTimeout(timeoutId.current);
+            setIsDropdownOpen(true); // Opens dropdown on hover (only on desktop)
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (window.innerWidth >= 768) {
+            timeoutId.current = setTimeout(() => {
+                setIsDropdownOpen(false); // Closes dropdown after a slight delay on desktop
+            }, 200);
+        }
+    };
+
+    const handleLinkClick = () => {
+        if (isMenuOpen) {
+            setIsMenuOpen(false); // Close the menu on mobile after any link is clicked
+        }
     };
 
     useEffect(() => {
@@ -53,17 +75,21 @@ function Navbar() {
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:block md:w-auto transition-all duration-300 ease-in-out`}>
                     <ul className="flex flex-col md:flex-row md:space-x-6 mt-4 md:mt-0 text-purple-800 font-medium">
                         <li>
-                            <Link to="/" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200">
+                            <Link to="/" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200" onClick={handleLinkClick}>
                                 Home
                             </Link>
                         </li>
 
                         {/* Dropdown */}
-                        <li className="relative" ref={dropdownRef}>
+                        <li
+                            className="relative group"
+                            ref={dropdownRef}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        >
                             <button
-                                onClick={toggleDropdown}
+                                onClick={toggleDropdown} // Toggle dropdown on click in mobile view
                                 className="w-full md:w-auto flex items-center justify-between px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200"
-                                aria-expanded={isDropdownOpen}
                             >
                                 Our Services
                                 <svg className="w-3 h-3 ml-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 10 6">
@@ -73,25 +99,37 @@ function Navbar() {
 
                             <div className={`absolute w-64 mt-2 bg-white rounded-md shadow-md z-50 transition-all duration-300 origin-top transform ${isDropdownOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}`}>
                                 <ul className="text-sm text-purple-800 py-2">
-                                    <li><Link to="/services/1" className="block px-4 py-2 hover:bg-purple-100">Start-Ups & MSME Subsidy</Link></li>
-                                    <li><Link to="/services/2" className="block px-4 py-2 hover:bg-purple-100">Goods and Service Tax</Link></li>
-                                    <li><Link to="/services/3" className="block px-4 py-2 hover:bg-purple-100">Income Tax – Salary, Company, TDS etc.</Link></li>
-                                    <li><Link to="/services/4" className="block px-4 py-2 hover:bg-purple-100">Book Keeping</Link></li>
-                                    <li><Link to="/services/5" className="block px-4 py-2 hover:bg-purple-100">Foreign Trade Management – DGFT</Link></li>
-                                    <li><Link to="/services/6" className="block px-4 py-2 hover:bg-purple-100">Customs Clearance & MOOWR</Link></li>
-                                    <li><Link to="/services/7" className="block px-4 py-2 hover:bg-purple-100">Health, Wealth and Marine Insurance</Link></li>
-                                    <li><Link to="/services/8" className="block px-4 py-2 hover:bg-purple-100">Other Statutory Requirements</Link></li>
+                                    {[ 
+                                        { id: 1, name: 'Start-Ups & MSME Subsidy' },
+                                        { id: 2, name: 'Goods and Service Tax' },
+                                        { id: 3, name: 'Income Tax – Salary, Company, TDS etc.' },
+                                        { id: 4, name: 'Book Keeping' },
+                                        { id: 5, name: 'Foreign Trade Management – DGFT' },
+                                        { id: 6, name: 'Customs Clearance & MOOWR' },
+                                        { id: 7, name: 'Health, Wealth and Marine Insurance' },
+                                        { id: 8, name: 'Other Statutory Requirements' }
+                                    ].map(service => (
+                                        <li key={service.id}>
+                                            <Link
+                                                to={`/services/${service.id}`}
+                                                className="block px-4 py-2 hover:bg-purple-100"
+                                                onClick={handleLinkClick} // Close menu after selection
+                                            >
+                                                {service.name}
+                                            </Link>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </li>
 
                         <li>
-                            <Link to="/about" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200">
+                            <Link to="/about" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200" onClick={handleLinkClick}>
                                 About Us
                             </Link>
                         </li>
                         <li>
-                            <Link to="/contact" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200">
+                            <Link to="/contact" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200" onClick={handleLinkClick}>
                                 Contact
                             </Link>
                         </li>
