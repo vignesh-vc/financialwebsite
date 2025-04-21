@@ -1,23 +1,12 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import {
-  FaIndustry, FaMoneyCheckAlt, FaFileInvoiceDollar,
-  FaBookOpen, FaGlobe, FaWarehouse, FaHeartbeat, FaTasks
-} from 'react-icons/fa';
-
-const services = [
-  { title: "Start-Ups & MSME Subsidy", icon: <FaIndustry /> },
-  { title: "Goods and Service Tax (GST)", icon: <FaMoneyCheckAlt /> },
-  { title: "Income Tax – Salary, Company, TDS etc.", icon: <FaFileInvoiceDollar /> },
-  { title: "Book Keeping", icon: <FaBookOpen /> },
-  { title: "Foreign Trade Management – DGFT", icon: <FaGlobe /> },
-  { title: "Customs Clearance & Warehouse Licensing (MOOWR)", icon: <FaWarehouse /> },
-  { title: "Health, Wealth and Marine Insurance Advisor", icon: <FaHeartbeat /> },
-  { title: "Other Misc. in Statutory Requirements", icon: <FaTasks /> },
-];
+import { useNavigate } from 'react-router-dom';
+import serviceData from '../data/serviceData';
 
 const ServicesSection = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
@@ -34,16 +23,26 @@ const ServicesSection = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {services.map((service, index) => (
+        {serviceData.slice(0, 6).map((service) => (
           <div
-            key={index}
-            className="bg-purple-50 border border-purple-100 rounded-xl p-6 text-center shadow-md hover:shadow-lg transition"
+            key={service.id}
+            onClick={() => navigate(`/services/${service.id}`)}
+            className="cursor-pointer bg-purple-50 border border-purple-100 rounded-xl p-6 text-center shadow-md hover:shadow-lg transition"
             data-aos="zoom-in"
           >
             <div className="text-4xl text-purple-700 mb-4">{service.icon}</div>
             <h3 className="text-lg font-semibold text-purple-800">{service.title}</h3>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 text-center">
+        <button
+          onClick={() => navigate('/services')}
+          className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition"
+        >
+          View All Services
+        </button>
       </div>
     </section>
   );

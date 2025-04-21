@@ -3,7 +3,8 @@ import Footer from "../components/Footer";
 import contactbg from "../assests/images/tax2.jpg";
 import { Player } from "@lottiefiles/react-lottie-player";
 import contactAnimation from "../assests/lottie/contact.json";
-import { FiMail, FiUser, FiMessageCircle } from "react-icons/fi";
+import { FiMail, FiUser, FiMessageCircle, FiPhone } from "react-icons/fi";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 const Contact = () => {
   return (
@@ -67,6 +68,18 @@ const Contact = () => {
 
             <div className="relative">
               <label className="block text-gray-700 font-semibold mb-2">
+                Mobile Number
+              </label>
+              <FiPhone className="absolute top-12 left-3 text-gray-400" />
+              <input
+                type="text"
+                className="w-full pl-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Your Mobile Number"
+              />
+            </div>
+
+            <div className="relative">
+              <label className="block text-gray-700 font-semibold mb-2">
                 Message
               </label>
               <FiMessageCircle className="absolute top-12 left-3 text-gray-400" />
@@ -85,7 +98,7 @@ const Contact = () => {
           </form>
         </div>
       </section>
-
+      <WhatsAppButton />
       <Footer />
     </div>
   );

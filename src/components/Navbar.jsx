@@ -73,14 +73,14 @@ function Navbar() {
 
                             <div className={`absolute w-64 mt-2 bg-white rounded-md shadow-md z-50 transition-all duration-300 origin-top transform ${isDropdownOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}`}>
                                 <ul className="text-sm text-purple-800 py-2">
-                                    <li><Link to="/startups" className="block px-4 py-2 hover:bg-purple-100">Start-Ups & MSME Subsidy</Link></li>
-                                    <li><Link to="/gst" className="block px-4 py-2 hover:bg-purple-100">Goods and Service Tax</Link></li>
-                                    <li><Link to="/income-tax" className="block px-4 py-2 hover:bg-purple-100">Income Tax – Salary, Company, TDS etc.</Link></li>
-                                    <li><Link to="/bookkeeping" className="block px-4 py-2 hover:bg-purple-100">Book Keeping</Link></li>
-                                    <li><Link to="/foreign-trade" className="block px-4 py-2 hover:bg-purple-100">Foreign Trade Management – DGFT</Link></li>
-                                    <li><Link to="/customs" className="block px-4 py-2 hover:bg-purple-100">Customs Clearance & MOOWR</Link></li>
-                                    <li><Link to="/insurance" className="block px-4 py-2 hover:bg-purple-100">Health, Wealth and Marine Insurance</Link></li>
-                                    <li><Link to="/statutory" className="block px-4 py-2 hover:bg-purple-100">Other Statutory Requirements</Link></li>
+                                    <li><Link to="/services/1" className="block px-4 py-2 hover:bg-purple-100">Start-Ups & MSME Subsidy</Link></li>
+                                    <li><Link to="/services/2" className="block px-4 py-2 hover:bg-purple-100">Goods and Service Tax</Link></li>
+                                    <li><Link to="/services/3" className="block px-4 py-2 hover:bg-purple-100">Income Tax – Salary, Company, TDS etc.</Link></li>
+                                    <li><Link to="/services/4" className="block px-4 py-2 hover:bg-purple-100">Book Keeping</Link></li>
+                                    <li><Link to="/services/5" className="block px-4 py-2 hover:bg-purple-100">Foreign Trade Management – DGFT</Link></li>
+                                    <li><Link to="/services/6" className="block px-4 py-2 hover:bg-purple-100">Customs Clearance & MOOWR</Link></li>
+                                    <li><Link to="/services/7" className="block px-4 py-2 hover:bg-purple-100">Health, Wealth and Marine Insurance</Link></li>
+                                    <li><Link to="/services/8" className="block px-4 py-2 hover:bg-purple-100">Other Statutory Requirements</Link></li>
                                 </ul>
                             </div>
                         </li>
