@@ -79,7 +79,11 @@ function Navbar() {
                                 Home
                             </Link>
                         </li>
-
+                        <li>
+                            <Link to="/about" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200" onClick={handleLinkClick}>
+                                About Us
+                            </Link>
+                        </li>
                         {/* Dropdown */}
                         <li
                             className="relative group"
@@ -123,11 +127,7 @@ function Navbar() {
                             </div>
                         </li>
 
-                        <li>
-                            <Link to="/about" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200" onClick={handleLinkClick}>
-                                About Us
-                            </Link>
-                        </li>
+                    
                         <li>
                             <Link to="/contact" className="block px-4 py-2 rounded-md hover:bg-purple-700 hover:text-white transition duration-200" onClick={handleLinkClick}>
                                 Contact

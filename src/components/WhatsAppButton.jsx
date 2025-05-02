@@ -1,13 +1,12 @@
 import React from 'react';
-import { FaWhatsapp } from 'react-icons/fa';
 import Lottie from 'react-lottie';
-import animationData from '../assests/lottie/whatsapp.json'; // path to your Lottie JSON file
+import animationData from '../assests/lottie/whatsapp.json'; // ensure correct path
 
 const WhatsAppButton = () => {
   const defaultOptions = {
-    loop: true, // Set to true for looping animation
-    autoplay: true, // Set to true to autoplay animation
-    animationData: animationData, // Import your Lottie JSON data here
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
@@ -15,13 +14,14 @@ const WhatsAppButton = () => {
 
   return (
     <a
-      href="https://wa.me/919080418650" // replace with your number
-      className="fixed bottom-6 right-6 z-50  hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all"
+      href="https://wa.me/919080418650" // replace with your WhatsApp number
       target="_blank"
       rel="noopener noreferrer"
+      className="fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
     >
-      {/* Lottie animation */}
-      <Lottie options={defaultOptions} height={50} width={50} />
+      <div className="w-14 h-14 md:w-16 md:h-16">
+        <Lottie options={defaultOptions} height="100%" width="100%" />
+      </div>
     </a>
   );
 };
